@@ -60,9 +60,6 @@ AUC_log <- function(D,v) {log(D/exp(v[3]))} #function evaluating the log(AUC)=lo
 tmax <- function(v) {(v[2]-v[1])/(exp(v[2])-exp(v[1]))}
 Cmax_log <- function(D,v) {log(D/(exp(v[3]-v[1]))*exp(-exp(v[1])*tmax(v)))} #function evaluating the log(Cmax)
 
-#(help)function for calculating the euclidean norm of a vector
-norm_vec <- function(x) sqrt(sum(x^2))
-
 i <- 1 # or 2! number of dataset
 
   ####Loading of dataset
