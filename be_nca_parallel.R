@@ -4,6 +4,7 @@
 ### N patients outcome is recorded at n points in time 
 ### Test is performed on the log-parameters (log AUC,log Cmax) 
 ### the threshold is chosen according to the 80/125-rule (log 1.25)
+### N=40 subjects, 20 for reference, 20 for test treatment
 ### example dataset 1 was simulated with rich design, high BSV and under H0
 ### example dataset 2 was simulated with sparse design, low BSV and under H1
 
@@ -21,19 +22,14 @@ i <- 1 # or 2! number of dataset
   ####Loading of dataset
   tab<-read.table(paste(paste("dataset",i, sep="_"),".txt",sep=""),header=T,sep=" ",dec=".",na=".")
   assign(paste("data", i, sep="_"),tab)
-  
-  ####Appropriate format to fit with saemix
-  tab <- subset(tab, is.na(tab$Dose))
   tab$Dose=NULL
   tab$Dose=4
-  tab<-tab[,c(1,5,2,3,4)]
   
   ####Create treatment indicator: 0 for Reference treatment, 1 for Test treatment
   for (j in 1:nrow(tab)){
     if(tab$Tr[j]=="R"){tab$Treat[j]<-0} else{tab$Treat[j]<-1}
   }
   tab$Tr=NULL
-  tab<-tab[,c(1,2,3,5,4)]
   tab$Treat <- as.numeric(tab$Treat)
   
   ####Number of sampling times
